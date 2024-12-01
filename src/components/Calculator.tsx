@@ -103,7 +103,7 @@ export const Calculator: React.FC = () => {
       <motion.div
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        className="w-full max-w-sm backdrop-blur-xl bg-white/10 p-6 rounded-3xl shadow-2xl border border-white/20"
+        className="w-full max-w-sm  bg-white/10 p-6 rounded-3xl shadow-2xl border border-white/20"
       >
         <div className="flex justify-between items-center mb-4">
           <button

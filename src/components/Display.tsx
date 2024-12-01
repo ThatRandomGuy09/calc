@@ -16,7 +16,7 @@ export const Display: React.FC<DisplayProps> = ({
     <motion.div
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="w-full p-6 mb-4 rounded-2xl backdrop-blur-md bg-white/15 border border-white/30 shadow-lg"
+      className="w-full p-6 mb-4 rounded-2xl  bg-white/15 border border-white/30 shadow-lg"
     >
       <div className="flex justify-between items-center mb-2">
         <span className="text-purple-200 text-sm font-semibold tracking-wide">

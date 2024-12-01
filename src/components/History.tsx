@@ -18,7 +18,7 @@ export const History: React.FC<HistoryProps> = ({
       initial={{ opacity: 0, height: 0 }}
       animate={{ opacity: 1, height: "auto" }}
       exit={{ opacity: 0, height: 0 }}
-      className="w-full mt-4 rounded-2xl backdrop-blur-md bg-white/15 border border-white/30 overflow-hidden shadow-lg"
+      className="w-full mt-4 rounded-2xl bg-white/15 border border-white/30 overflow-hidden shadow-lg"
     >
       <div className="flex justify-between items-center p-4 border-b border-white/20">
         <h3 className="text-white font-semibold tracking-wide">History</h3>
