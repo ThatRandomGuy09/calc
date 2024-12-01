@@ -15,7 +15,7 @@ export const Button: React.FC<ButtonProps> = ({
   className = "",
 }) => {
   const baseStyles =
-    "w-full h-14 md:h-16 rounded-2xl transition-all duration-200 active:scale-95 text-lg md:text-xl font-semibold relative overflow-hidden group shadow-lg";
+    "w-full h-14 md:h-16 rounded-2xl transition-all duration-200 active:scale-95 text-lg md:text-xl font-semibold relative overflow-hidden group ";
 
   const variants = {
     default:
