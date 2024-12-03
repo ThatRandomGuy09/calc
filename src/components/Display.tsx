@@ -22,9 +22,7 @@ export const Display: React.FC<DisplayProps> = ({
         <span className="text-purple-200 text-sm font-semibold tracking-wide">
           {mode.toUpperCase()}
         </span>
-        <span className="text-gray-300 text-lg font-medium">
-          {expression || "\u00A0"}
-        </span>
+        <span className="text-gray-300 text-lg font-medium">{expression}</span>
       </div>
       <div className="h-12 text-right overflow-x-auto whitespace-nowrap">
         <motion.span
