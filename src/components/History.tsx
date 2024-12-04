@@ -1,6 +1,11 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import type { HistoryEntry } from "../utils/calculator";
+
+interface HistoryEntry {
+  expression: string;
+  result: string;
+  timestamp: Date;
+}
 
 interface HistoryProps {
   entries: HistoryEntry[];
@@ -13,6 +18,21 @@ export const History: React.FC<HistoryProps> = ({
   onSelectEntry,
   onClearHistory,
 }) => {
+  if (!entries || entries.length === 0) {
+    return (
+      <motion.div
+        initial={{ opacity: 0, height: 0 }}
+        animate={{ opacity: 1, height: "auto" }}
+        exit={{ opacity: 0, height: 0 }}
+        className="w-full mt-4 rounded-2xl bg-white/15 border border-white/30 overflow-hidden shadow-lg"
+      >
+        <div className="p-4 text-center text-sm text-gray-300">
+          No history available.
+        </div>
+      </motion.div>
+    );
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0, height: 0 }}
@@ -45,7 +65,7 @@ export const History: React.FC<HistoryProps> = ({
                 {entry.result}
               </div>
               <div className="text-xs text-purple-200/70">
-                {entry.timestamp.toLocaleTimeString()}
+                {new Date(entry.timestamp).toLocaleTimeString()}
               </div>
             </motion.div>
           ))}

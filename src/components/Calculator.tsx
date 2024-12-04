@@ -15,7 +15,10 @@ export const Calculator: React.FC = () => {
   const [expression, setExpression] = useState("");
   const [shouldResetDisplay, setShouldResetDisplay] = useState(false);
   const [mode, setMode] = useState<CalculatorMode>("standard");
-  const [history, setHistory] = useState<HistoryEntry[]>([]);
+  const [history, setHistory] = useState<HistoryEntry[]>(() => {
+    const savedHistory = localStorage.getItem("calculatorHistory");
+    return savedHistory ? JSON.parse(savedHistory) : [];
+  });
   const [showHistory, setShowHistory] = useState(false);
 
   const handleNumber = (num: string) => {
@@ -46,16 +49,19 @@ export const Calculator: React.FC = () => {
     const fullExpression = expression + display;
     const result = calculate(fullExpression);
 
-    setHistory((prev) =>
-      [
+    setHistory((prev) => {
+      const newHistory = [
         {
           expression: fullExpression,
           result,
           timestamp: new Date(),
         },
         ...prev,
-      ].slice(0, 10)
-    );
+      ].slice(0, 10);
+
+      localStorage.setItem("calculatorHistory", JSON.stringify(newHistory));
+      return newHistory;
+    });
 
     setDisplay(result);
     setExpression("");
@@ -88,6 +94,11 @@ export const Calculator: React.FC = () => {
       setDisplay(formattedResult);
       setShouldResetDisplay(true);
     }
+  };
+
+  const handleClearHistory = () => {
+    setHistory([]);
+    localStorage.removeItem("calculatorHistory");
   };
 
   const scientificButtons = [
@@ -220,12 +231,12 @@ export const Calculator: React.FC = () => {
         <AnimatePresence>
           {showHistory && (
             <History
-              entries={history}
+              entries={history.length > 0 ? history : []}
               onSelectEntry={(expr) => {
                 setDisplay(expr);
                 setExpression("");
               }}
-              onClearHistory={() => setHistory([])}
+              onClearHistory={handleClearHistory}
             />
           )}
         </AnimatePresence>
